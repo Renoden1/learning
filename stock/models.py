@@ -1,17 +1,13 @@
 from django.db import models
 import random
 from django.contrib.auth.models import User
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
 
 
 class Stock(models.Model):
-
     name = models.CharField(max_length=40)
     ticker = models.CharField(max_length=4, default="NULL")
     description = models.TextField(null=True, blank=True)
-    currency = models.ForeignKey('Currency', null=True,  on_delete=models.SET_NULL, blank=True,)#null=True )choices=SHIRT_SIZES,
-    #currency = models.CharField(max_length=1, choices=SHIRT_SIZES, default="$")
+    currency = models.ForeignKey('Currency', null=True,  on_delete=models.SET_NULL, )#blank=True,
     logo = models.ImageField(null=True, blank=True)
 
     def get_random_price(self):
@@ -23,7 +19,6 @@ class Stock(models.Model):
 
 
 class Currency(models.Model):
-
     name = models.CharField(max_length=40)
     ticker = models.CharField(max_length=4)
     sign = models.CharField(max_length=1, )#choices=SHIRT_SIZES)
@@ -32,16 +27,16 @@ class Currency(models.Model):
         return   self.sign
 
 # Создание доллара и рубля (символы)
-Cur1 = Currency.objects.create(
-    name = "Dollar",
-    ticker = "1112",
-    sign = "$",
-)
-Cur2 = Currency.objects.create(
-    name = "ruble",
-    ticker = "1121",
-    sign = "₽",
-)
+#Cur1 = Currency.objects.create(
+#    name = "Dollar",
+ #   ticker = "1112",
+ #   sign = "$",
+#)
+#Cur2 = Currency.objects.create(
+#    name = "ruble",
+#    ticker = "1121",
+#    sign = "₽",
+#)
 
 
 class Account(models.Model):

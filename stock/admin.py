@@ -4,6 +4,10 @@ from stock.models import (Stock, Currency, Account, AccountCurrency, AccountStoc
 
 @admin.register(Stock)
 class StockAdmin(admin.ModelAdmin):
+    list_display = ("ticker", "name", "description")
+
+@admin.register(Currency)
+class CurrencyAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(AccountCurrency)

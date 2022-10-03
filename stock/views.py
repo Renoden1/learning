@@ -91,7 +91,7 @@ def stock_sell(request, pk):
         acc_currency, created = AccountCurrency.objects.get_or_create(account=request.user.account, currency=stock.currency,
                                                                       defaults={'amount': 0})
 
-        if acc_stock.amount > 0:############# почему если нет уловия о кол-ве акций оно все равно не дает продать больше чем есть???
+        if acc_stock.amount > 0:############# почему если нет условия о кол-ве акций оно все равно не дает продать больше чем есть???
             acc_currency.amount = acc_currency.amount + sell_cost
             acc_stock.save()
             acc_currency.save()
